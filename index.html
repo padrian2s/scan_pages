@@ -302,6 +302,196 @@
             border-color: #22c55e;
         }
 
+        /* View Toggle */
+        .view-toggle {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 25px;
+        }
+
+        .view-toggle-btn {
+            padding: 12px 24px;
+            border: none;
+            background: rgba(255, 255, 255, 0.05);
+            color: #888;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .view-toggle-btn:first-child {
+            border-radius: 10px 0 0 10px;
+        }
+
+        .view-toggle-btn:last-child {
+            border-radius: 0 10px 10px 0;
+        }
+
+        .view-toggle-btn.active {
+            background: linear-gradient(135deg, #00d4ff 0%, #7b2cbf 100%);
+            color: white;
+        }
+
+        .view-toggle-btn:hover:not(.active) {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Simple View Styles */
+        .simple-view .controls {
+            display: none;
+        }
+
+        .simple-intro {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto 30px;
+            padding: 20px;
+            display: none;
+        }
+
+        .simple-view .simple-intro {
+            display: block;
+        }
+
+        .simple-intro h2 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: #e0e0e0;
+        }
+
+        .simple-intro p {
+            color: #888;
+            line-height: 1.6;
+        }
+
+        .simple-view .repo-stats,
+        .simple-view .repo-meta,
+        .simple-view .repo-topics,
+        .simple-view .repo-visibility {
+            display: none !important;
+        }
+
+        .simple-view .repo-card {
+            text-align: center;
+            padding: 30px;
+        }
+
+        .simple-view .repo-header {
+            justify-content: center;
+            margin-bottom: 16px;
+        }
+
+        .simple-view .repo-name {
+            font-size: 1.4rem;
+        }
+
+        .simple-view .repo-description {
+            font-size: 1rem;
+            margin-bottom: 20px;
+            -webkit-line-clamp: 4;
+        }
+
+        .simple-view .pages-link {
+            display: inline-flex;
+            padding: 14px 28px;
+            font-size: 1.1rem;
+            border-radius: 12px;
+            margin-top: 0;
+            background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+            border: none;
+            color: white;
+            font-weight: 500;
+        }
+
+        .simple-view .pages-link:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 25px rgba(34, 197, 94, 0.3);
+        }
+
+        .simple-view .pages-badge {
+            display: none;
+        }
+
+        .simple-view .stat-card {
+            min-width: 140px;
+        }
+
+        .simple-stats {
+            display: none;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .simple-view .simple-stats {
+            display: flex;
+        }
+
+        .simple-view .stats-summary {
+            display: none;
+        }
+
+        .simple-stat-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 24px 32px;
+            border-radius: 16px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .simple-stat-card .icon {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .simple-stat-card .value {
+            font-size: 2.2rem;
+            font-weight: bold;
+            color: #00d4ff;
+        }
+
+        .simple-stat-card .label {
+            font-size: 0.95rem;
+            color: #aaa;
+            margin-top: 5px;
+        }
+
+        .simple-search {
+            display: none;
+            max-width: 400px;
+            margin: 0 auto 30px;
+        }
+
+        .simple-view .simple-search {
+            display: block;
+        }
+
+        .simple-search input {
+            width: 100%;
+            padding: 16px 24px;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50px;
+            background: rgba(255, 255, 255, 0.05);
+            color: #e0e0e0;
+            font-size: 1.1rem;
+            text-align: center;
+            transition: all 0.2s;
+        }
+
+        .simple-search input:focus {
+            outline: none;
+            border-color: #00d4ff;
+            background: rgba(0, 212, 255, 0.05);
+        }
+
+        .simple-search input::placeholder {
+            color: #666;
+        }
+
         .repo-meta {
             display: flex;
             flex-wrap: wrap;
@@ -375,6 +565,44 @@
             <h1>GitHub Repository Scanner</h1>
             <p>Repositories from <a href="https://github.com/padrian2s" target="_blank" class="profile-link">@padrian2s</a></p>
         </header>
+
+        <!-- View Toggle -->
+        <div class="view-toggle">
+            <button class="view-toggle-btn" id="simpleViewBtn" onclick="setView('simple')">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"/>
+                    <path d="M8 14s1.5 2 4 2 4-2 4-2"/>
+                    <line x1="9" y1="9" x2="9.01" y2="9"/>
+                    <line x1="15" y1="9" x2="15.01" y2="9"/>
+                </svg>
+                Simplu
+            </button>
+            <button class="view-toggle-btn active" id="advancedViewBtn" onclick="setView('advanced')">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="3" y="3" width="7" height="7"/>
+                    <rect x="14" y="3" width="7" height="7"/>
+                    <rect x="14" y="14" width="7" height="7"/>
+                    <rect x="3" y="14" width="7" height="7"/>
+                </svg>
+                Avansat
+            </button>
+        </div>
+
+        <!-- Simple Intro (visible only in simple view) -->
+        <div class="simple-intro">
+            <h2>🚀 Bine ai venit!</h2>
+            <p>Aici găsești toate proiectele mele publicate pe internet. Fiecare card reprezintă un proiect pe care îl poți vizita făcând click pe butonul verde.</p>
+        </div>
+
+        <!-- Simple Stats (visible only in simple view) -->
+        <div class="simple-stats" id="simpleStats">
+            <!-- Filled by JS -->
+        </div>
+
+        <!-- Simple Search (visible only in simple view) -->
+        <div class="simple-search">
+            <input type="text" id="simpleSearchInput" placeholder="🔍 Caută un proiect...">
+        </div>
 
         <div class="stats-summary" id="statsSummary">
             <!-- Filled by JS -->
@@ -687,6 +915,72 @@
                 `;
             }
         }
+
+        // View toggle functionality
+        let currentView = 'advanced';
+
+        function setView(view) {
+            currentView = view;
+            const container = document.querySelector('.container');
+            const simpleBtn = document.getElementById('simpleViewBtn');
+            const advancedBtn = document.getElementById('advancedViewBtn');
+
+            if (view === 'simple') {
+                container.classList.add('simple-view');
+                simpleBtn.classList.add('active');
+                advancedBtn.classList.remove('active');
+                // Force GitHub Pages filter on in simple view
+                document.getElementById('filterPages').checked = true;
+            } else {
+                container.classList.remove('simple-view');
+                simpleBtn.classList.remove('active');
+                advancedBtn.classList.add('active');
+            }
+
+            filterAndRender();
+            localStorage.setItem('preferredView', view);
+        }
+
+        function renderSimpleStats(repos) {
+            const pagesCount = repos.filter(r => r.has_pages).length;
+
+            document.getElementById('simpleStats').innerHTML = `
+                <div class="simple-stat-card">
+                    <div class="icon">🌐</div>
+                    <div class="value">${pagesCount}</div>
+                    <div class="label">Site-uri publicate</div>
+                </div>
+                <div class="simple-stat-card">
+                    <div class="icon">📁</div>
+                    <div class="value">${repos.length}</div>
+                    <div class="label">Proiecte totale</div>
+                </div>
+            `;
+        }
+
+        // Sync simple search with main search
+        document.addEventListener('DOMContentLoaded', function() {
+            const simpleSearch = document.getElementById('simpleSearchInput');
+            const mainSearch = document.getElementById('searchInput');
+
+            simpleSearch.addEventListener('input', function() {
+                mainSearch.value = this.value;
+                filterAndRender();
+            });
+
+            // Restore preferred view
+            const savedView = localStorage.getItem('preferredView');
+            if (savedView) {
+                setView(savedView);
+            }
+        });
+
+        // Extend init to also render simple stats
+        const originalInit = init;
+        init = async function() {
+            await originalInit();
+            renderSimpleStats(allRepos);
+        };
 
         init();
     </script>
